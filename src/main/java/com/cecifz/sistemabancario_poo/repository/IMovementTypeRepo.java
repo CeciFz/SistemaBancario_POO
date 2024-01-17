@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IMovementTypeRepo extends JpaRepository<MovementType, Integer> {
+public interface IMovementTypeRepo extends IGenericRepo<MovementType, Integer> {
 }
