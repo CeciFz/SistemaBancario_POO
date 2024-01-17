@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AccountServiceImpl extends CRUDImpl<Account, Integer> implements IAccountService {
+public class AccountServiceServiceImpl extends CRUDServiceImpl<Account, Integer> implements IAccountService {
 
     private final IAccountRepo accountRepo;
 

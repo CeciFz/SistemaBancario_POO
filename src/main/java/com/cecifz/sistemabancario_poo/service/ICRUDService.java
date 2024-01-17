@@ -10,6 +10,11 @@ public interface ICRUDService<T, ID> {
     void delete(ID id) throws Exception;
 }
 
+
+
+
+
+
 /*
 Resumen:
 1- ICRUDService va a tener los métodos de JPA que hay quiero desarrollar.

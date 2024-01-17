@@ -5,7 +5,7 @@ import com.cecifz.sistemabancario_poo.service.ICRUDService;
 
 import java.util.List;
 
-public abstract class CRUDImpl<T, ID> implements ICRUDService<T, ID> {
+public abstract class CRUDServiceImpl<T, ID> implements ICRUDService<T, ID> {
 
     protected abstract IGenericRepo<T, ID> getRepo();
 
