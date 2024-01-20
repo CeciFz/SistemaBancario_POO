@@ -24,7 +24,7 @@ public class ProvinceController {
 
     @PostMapping("/update")
     private ResponseEntity<Province> update(@RequestBody Province province) throws Exception {
-        Province updatedProvince = provinceService.update(province, province.getIdProvince());
+        Province updatedProvince = provinceService.update(province, province.getProvinceId());
         return new ResponseEntity<>(updatedProvince, HttpStatus.OK);
     }
 

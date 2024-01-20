@@ -42,7 +42,7 @@ public class Client {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "id_city", nullable = false, foreignKey = @ForeignKey(name = "FX_CITY"))
+    @JoinColumn(name = "city_id", nullable = false, foreignKey = @ForeignKey(name = "FX_CITY"))
     private City city;
 
     @OneToMany(mappedBy = "clientPhone", cascade = CascadeType.ALL)

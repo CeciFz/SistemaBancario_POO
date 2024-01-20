@@ -23,11 +23,12 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
+    /*   TODO: Quitar esto - Regla de negocio: un admin podrá cambiar la contraseña, pero nunca el usuario
     @PostMapping("/update")
     private ResponseEntity<User> update(@RequestBody User user) throws Exception {
         User updatedUser = userService.update(user, user.getIdUser());
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("getAll")
     public ResponseEntity<List<User>> readAll() throws Exception {

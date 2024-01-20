@@ -25,4 +25,7 @@ public class Phone {
     @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FK_PHONE_NUMBER"))
     private Client clientPhone;
 
+    @Column(length = 20)
+    private String detail;
+
 }

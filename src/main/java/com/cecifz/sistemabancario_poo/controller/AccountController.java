@@ -33,7 +33,7 @@ public class AccountController {
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
-    @GetMapping("/{nroCuenta}")
+    @GetMapping("/{accountNumber}")
     public ResponseEntity<Account> readById(@PathVariable Integer accountNumber) throws Exception {
         return new ResponseEntity<>(accountService.readById(accountNumber), HttpStatus.OK);
     }

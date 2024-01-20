@@ -15,7 +15,7 @@ import org.hibernate.annotations.Where;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "table_role")
-@SQLDelete(sql = "UPDATE table_role SET enabled = false WHERE id_role = ?")  //logical deletion (Soft Delete)
+@SQLDelete(sql = "UPDATE table_role SET enabled = false WHERE role_id = ?")  //logical deletion (Soft Delete)
 //@Where(clause = "enabled = true")  //deprecated
 @SQLRestriction("enabled = true")   //o  "enabled < > true"
 public class Role {
@@ -23,7 +23,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idRole;
+    private Integer roleId;
 
     @Column(length = 20, nullable = false)
     private String roleName;

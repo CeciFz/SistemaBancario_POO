@@ -13,13 +13,13 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@SQLDelete(sql = "UPDATE province SET enabled = false WHERE id_province = ?")
+@SQLDelete(sql = "UPDATE province SET enabled = false WHERE province_id = ?")
 @SQLRestriction("enabled = true")
 public class Province {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idProvince;
+    private Integer provinceId;
 
     @Column(length = 50, nullable = false, unique = true)
     private String provinceName;

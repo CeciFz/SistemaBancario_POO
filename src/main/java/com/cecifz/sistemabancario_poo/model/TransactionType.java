@@ -13,16 +13,16 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@SQLDelete(sql = "UPDATE movement_type SET enabled = false WHERE id_movement_type = ?")
+@SQLDelete(sql = "UPDATE transaction_type SET enabled = false WHERE transaction_type_id = ?")
 @SQLRestriction("enabled = true")
-public class MovementType {
+public class TransactionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idMovementType;
+    private Integer transactionTypeId;
 
     @Column(length = 20, nullable = false)
-    private String movementType;
+    private String transactionType;
 
     private boolean enabled;
 }

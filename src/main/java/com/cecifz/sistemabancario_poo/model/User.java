@@ -14,17 +14,17 @@ import org.hibernate.annotations.SQLRestriction;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "user_account")
-@SQLDelete(sql = "UPDATE user_account SET enabled = false WHERE id_user = ?")
+@SQLDelete(sql = "UPDATE user_account SET enabled = false WHERE user_id = ?")
 @SQLRestriction("enabled = true")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idUser;
+    private Integer userId;
 
     @ManyToOne
-    @JoinColumn(name = "id_role", nullable = false, foreignKey = @ForeignKey(name = "FX_USER_ROLE"))
+    @JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "FX_USER_ROLE"))
     private Role role;
 
     @Column(length = 50, nullable = false, unique = true)

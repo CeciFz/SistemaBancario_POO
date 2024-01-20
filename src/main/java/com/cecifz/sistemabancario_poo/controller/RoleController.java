@@ -27,7 +27,7 @@ public class RoleController {
 
     @PostMapping("/update")
     private ResponseEntity<Role> update(@RequestBody Role role) throws Exception {
-        Role updatedRole = roleService.update(role, role.getIdRole());
+        Role updatedRole = roleService.update(role, role.getRoleId());
         return new ResponseEntity<>(updatedRole, HttpStatus.OK);
     }
 

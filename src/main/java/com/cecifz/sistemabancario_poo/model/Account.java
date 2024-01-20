@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @SQLDelete(sql = "UPDATE account SET enabled = false WHERE account_number = ?")
 @SQLRestriction("enabled = true")
-public class Account {
+public class Account {               // TODO: SP para crear cuentas y verificar condiciones (se debe iniciar con monto de $10000)
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @EqualsAndHashCode.Include
@@ -28,10 +28,10 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FX_DNI_ACCOUNT"))
-    private Client client;
-
+    private Client client;                   //TODO: SP para que un cliente no pueda tener más de 3 cuentas.
+                                            //Una cuenta puede pertenecer solo a un cliente
     @ManyToOne
-    @JoinColumn(name = "id_account_type", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_TYPE"))
+    @JoinColumn(name = "account_type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_TYPE"))
     private AccountType accountType;
 
     @Column(columnDefinition = "decimal(6,2)", nullable = false)

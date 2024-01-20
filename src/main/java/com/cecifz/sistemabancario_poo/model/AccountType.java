@@ -13,13 +13,13 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@SQLDelete(sql = "UPDATE account_type SET enabled = false WHERE id_account_type = ?")
+@SQLDelete(sql = "UPDATE account_type SET enabled = false WHERE account_type_id = ?")
 @SQLRestriction("enabled = true")
 public class AccountType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idAccountType;
+    private Integer accountTypeId;
 
     @Column(length = 20, nullable = false)
     private String accountType;

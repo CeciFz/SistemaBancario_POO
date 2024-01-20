@@ -24,7 +24,7 @@ public class CityController {
 
     @PostMapping("/update")
     private ResponseEntity<City> update(@RequestBody City city) throws Exception {
-        City updatedCity = cityService.update(city, city.getIdCity());
+        City updatedCity = cityService.update(city, city.getCityId());
         return new ResponseEntity<>(updatedCity, HttpStatus.OK);
     }
 

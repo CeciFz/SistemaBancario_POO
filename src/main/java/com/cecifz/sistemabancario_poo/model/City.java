@@ -13,19 +13,19 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@SQLDelete(sql = "UPDATE city SET enabled = false WHERE id_city = ?")
+@SQLDelete(sql = "UPDATE city SET enabled = false WHERE city_id = ?")
 @SQLRestriction("enabled = true")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idCity;
+    private Integer cityId;
 
     @Column(length = 50, nullable = false)
     private String cityName;
 
     @ManyToOne
-    @JoinColumn(name = "id_province", nullable = false, foreignKey = @ForeignKey(name = "FX_PROVINCE"))
+    @JoinColumn(name = "province_id", nullable = false, foreignKey = @ForeignKey(name = "FX_PROVINCE"))
     private Province province;
 
     private boolean enabled;
