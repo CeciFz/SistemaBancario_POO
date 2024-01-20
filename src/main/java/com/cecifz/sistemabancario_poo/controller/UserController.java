@@ -42,6 +42,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

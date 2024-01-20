@@ -39,8 +39,9 @@ public class PhoneController {
         return new ResponseEntity<>(phoneService.readById(phone), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+    @DeleteMapping("/delete/{phone}")
+    public ResponseEntity<Void> delete(@PathVariable String phone) throws Exception {
+        phoneService.delete(phone);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

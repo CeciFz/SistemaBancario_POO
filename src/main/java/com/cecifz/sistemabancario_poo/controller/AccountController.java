@@ -23,7 +23,7 @@ public class AccountController {
     }
     @PostMapping("/update")
     private ResponseEntity<Account> update(@RequestBody Account account) throws Exception {
-        Account updatedAccount = accountService.update(account, account.getNroCuenta());
+        Account updatedAccount = accountService.update(account, account.getAccountNumber());
         return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
     }
 
@@ -34,12 +34,13 @@ public class AccountController {
     }
 
     @GetMapping("/{nroCuenta}")
-    public ResponseEntity<Account> readById(@PathVariable Integer nroCuenta) throws Exception {
-        return new ResponseEntity<>(accountService.readById(nroCuenta), HttpStatus.OK);
+    public ResponseEntity<Account> readById(@PathVariable Integer accountNumber) throws Exception {
+        return new ResponseEntity<>(accountService.readById(accountNumber), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+    @DeleteMapping("/delete/{accountNumber}")
+    public ResponseEntity<Void> delete(@PathVariable Integer accountNumber) throws Exception {
+        accountService.delete(accountNumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

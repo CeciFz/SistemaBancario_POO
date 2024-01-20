@@ -41,6 +41,7 @@ public class AccountTypeController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        accountTypeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

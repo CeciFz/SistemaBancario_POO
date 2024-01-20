@@ -41,6 +41,7 @@ public class MovementTypeController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        movementTypeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

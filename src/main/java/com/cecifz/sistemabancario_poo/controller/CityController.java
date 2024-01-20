@@ -41,6 +41,7 @@ public class CityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        cityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

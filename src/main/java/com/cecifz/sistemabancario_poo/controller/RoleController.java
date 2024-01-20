@@ -4,6 +4,8 @@ package com.cecifz.sistemabancario_poo.controller;
 import com.cecifz.sistemabancario_poo.model.Role;
 import com.cecifz.sistemabancario_poo.service.IRoleService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +44,7 @@ public class RoleController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        roleService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
