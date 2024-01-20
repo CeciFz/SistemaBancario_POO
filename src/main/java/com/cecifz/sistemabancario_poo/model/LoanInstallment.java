@@ -19,7 +19,7 @@ public class LoanInstallment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer loanId;
+    private Integer loanInstallmentId;
 
     @ManyToOne
     @JoinColumn(name = "loan_id", nullable = false, foreignKey = @ForeignKey(name = "FX_LOAN_INSTALLMENT"))
