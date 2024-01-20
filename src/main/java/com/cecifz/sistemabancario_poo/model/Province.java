@@ -24,5 +24,5 @@ public class Province {
     @Column(length = 50, nullable = false, unique = true)
     private String provinceName;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }

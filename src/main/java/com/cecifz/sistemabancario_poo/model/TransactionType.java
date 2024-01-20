@@ -24,5 +24,5 @@ public class TransactionType {
     @Column(length = 20, nullable = false)
     private String transactionType;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }

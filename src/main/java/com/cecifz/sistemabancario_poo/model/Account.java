@@ -34,11 +34,11 @@ public class Account {               // TODO: SP para crear cuentas y verificar 
     @JoinColumn(name = "account_type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_TYPE"))
     private AccountType accountType;
 
-    @Column(columnDefinition = "decimal(6,2)", nullable = false)
+    @Column(columnDefinition = "decimal(10,2)", nullable = false)
     private double balance;
 
     @Column(nullable = false)
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime = LocalDateTime.now();
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }

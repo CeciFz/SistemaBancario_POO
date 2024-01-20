@@ -27,16 +27,16 @@ public class Transaction {
     private Account account;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
 
-    @Column(columnDefinition = "decimal(6,2)", nullable = false)
+    @Column(columnDefinition = "decimal(10,2)", nullable = false)
     private double amount;
 
     @ManyToOne
     @JoinColumn(name = "id_transaction_Type", nullable = false, foreignKey = @ForeignKey(name = "FX_MOVEMENT_TYPE"))
     private TransactionType transactionType;
 
-    @Column(columnDefinition = "decimal(6,2)", nullable = false)
+    @Column(columnDefinition = "decimal(10,2)", nullable = false)
     private double balance;
 
     @Column(length = 50, nullable = false)

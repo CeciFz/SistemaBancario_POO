@@ -28,5 +28,5 @@ public class City {
     @JoinColumn(name = "province_id", nullable = false, foreignKey = @ForeignKey(name = "FX_PROVINCE"))
     private Province province;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }

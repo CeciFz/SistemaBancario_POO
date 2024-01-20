@@ -37,6 +37,6 @@ public class User {
     @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FX_DNI_USER"))
     private Client client;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 
 }

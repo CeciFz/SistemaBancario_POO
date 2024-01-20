@@ -24,5 +24,5 @@ public class AccountType {
     @Column(length = 20, nullable = false)
     private String accountType;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }

@@ -28,4 +28,6 @@ public class Phone {
     @Column(length = 20)
     private String detail;
 
+    private boolean enabled = Boolean.TRUE;
+
 }

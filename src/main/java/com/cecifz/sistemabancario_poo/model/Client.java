@@ -36,6 +36,7 @@ public class Client {
 
     private char sex;
 
+    @Column(nullable = false)
     private LocalDateTime birthday;
 
     @Column(length = 200, nullable = false)
@@ -50,5 +51,5 @@ public class Client {
 
     private String email;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }
