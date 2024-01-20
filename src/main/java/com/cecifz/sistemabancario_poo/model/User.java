@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Data
 @AllArgsConstructor
@@ -12,6 +14,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "user_account")
+@SQLDelete(sql = "UPDATE user_account SET enabled = false WHERE id_user = ?")
+@SQLRestriction("enabled = true")
 public class User {
 
     @Id

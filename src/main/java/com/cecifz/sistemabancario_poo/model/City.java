@@ -5,12 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@SQLDelete(sql = "UPDATE city SET enabled = false WHERE id_city = ?")
+@SQLRestriction("enabled = true")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

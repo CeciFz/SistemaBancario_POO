@@ -5,12 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.Where;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Table(name = "table_role")
+@SQLDelete(sql = "UPDATE table_role SET enabled = false WHERE id_role = ?")  //logical deletion (Soft Delete)
+//@Where(clause = "enabled = true")  //deprecated
+@SQLRestriction("enabled = true")   //o  "enabled < > true"
 public class Role {
 
     @Id
@@ -21,6 +28,6 @@ public class Role {
     @Column(length = 20, nullable = false)
     private String roleName;
 
-    private boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 }
 
