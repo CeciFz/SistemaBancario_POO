@@ -13,13 +13,4 @@ public class HealthController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-    // TODO TOMORROW: Agregar los controller para cargar las tablas bases
-    //Revisar cómo es para q al guardar te muestre la provincia entera
-    // También armar los scripts de postgre y subirlos a github
-    // No olvidar los DTO. Puede q ahí surgan mapper. Rever el orden de todo esto!
-    //Agregar logs!
-
-
-
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,13 +32,13 @@ public class Client {
     @Column(length = 50, nullable = false)
     private String lastNames;
 
-    @Column(nullable = false, length = 11, unique = true)
+    @Column(nullable = false, length = 13, unique = true)
     private String cuil;
 
     private char sex;
 
     @Column(nullable = false)
-    private LocalDateTime birthday;
+    private LocalDate birthdate;
 
     @Column(length = 200, nullable = false)
     private String address;

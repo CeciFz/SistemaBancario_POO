@@ -33,7 +33,7 @@ public class Transaction {
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name = "id_transaction_Type", nullable = false, foreignKey = @ForeignKey(name = "FX_MOVEMENT_TYPE"))
+    @JoinColumn(name = "id_transaction_Type", nullable = false, foreignKey = @ForeignKey(name = "FX_TRANSACTION_TYPE"))
     private TransactionType transactionType;
 
     @Column(columnDefinition = "decimal(10,2)", nullable = false)
