@@ -53,4 +53,15 @@ public class Client {
     private String email;
 
     private boolean enabled = Boolean.TRUE;
+
+    public String getFullName() {
+        return this.getLastNames() +
+                ", " +  this.getNames();
+    }
+
+    public String getFullAddress() {
+        return this.getAddress() +
+                ", " +  this.getCity().getCityName() +
+                ", " +  this.getCity().getProvince().getProvinceName();
+    }
 }
