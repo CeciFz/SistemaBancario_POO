@@ -1,8 +1,10 @@
 package com.cecifz.sistemabancario_poo.controller;
 
+import com.cecifz.sistemabancario_poo.dto.CityDto;
 import com.cecifz.sistemabancario_poo.model.City;
 import com.cecifz.sistemabancario_poo.service.ICityService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,28 +17,31 @@ import java.util.List;
 public class CityController {
 
     private final ICityService cityService;
+    private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<City> save(@RequestBody City city) throws Exception {
-        City savedCity = cityService.save(city);
+    private ResponseEntity<CityDto> save(@RequestBody City city) throws Exception {
+        CityDto savedCity = mapper.map(cityService.save(city), CityDto.class);
         return new ResponseEntity<>(savedCity, HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    private ResponseEntity<City> update(@RequestBody City city) throws Exception {
-        City updatedCity = cityService.update(city, city.getCityId());
+    private ResponseEntity<CityDto> update(@RequestBody City city) throws Exception {
+        CityDto updatedCity = mapper.map(cityService.update(city, city.getCityId()), CityDto.class);
         return new ResponseEntity<>(updatedCity, HttpStatus.OK);
     }
 
     @GetMapping("getAll")
-    public ResponseEntity<List<City>> readAll() throws Exception {
-        List<City> cities  = cityService.readAll();
+    public ResponseEntity<List<CityDto>> readAll() throws Exception {
+        List<CityDto> cities  = cityService.readAll()
+                .stream().map( city -> mapper.map(city, CityDto.class))
+                .toList();
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<City> readById(@PathVariable Integer id) throws Exception {
-        return new ResponseEntity<>(cityService.readById(id), HttpStatus.OK);
+    public ResponseEntity<CityDto> readById(@PathVariable Integer id) throws Exception {
+        return new ResponseEntity<>(mapper.map(cityService.readById(id), CityDto.class), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

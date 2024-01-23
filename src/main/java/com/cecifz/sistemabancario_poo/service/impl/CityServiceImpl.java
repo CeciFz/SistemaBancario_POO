@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CityServiceServiceImpl extends CRUDServiceImpl<City, Integer> implements ICityService {
+public class CityServiceImpl extends CRUDServiceImpl<City, Integer> implements ICityService {
 
     private final ICityRepo cityRepo;
 

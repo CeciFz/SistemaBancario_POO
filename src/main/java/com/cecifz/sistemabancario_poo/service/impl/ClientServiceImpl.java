@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ClientServiceServiceImpl extends CRUDServiceImpl<Client, String> implements IClientService {
+public class ClientServiceImpl extends CRUDServiceImpl<Client, String> implements IClientService {
 
     private final IClientRepo clientRepo;
 

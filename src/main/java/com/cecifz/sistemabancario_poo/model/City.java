@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -17,7 +18,9 @@ import org.hibernate.annotations.SQLRestriction;
 @SQLRestriction("enabled = true")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="city_seq")
+    @GenericGenerator(name = "city_seq", strategy="increment")
     @EqualsAndHashCode.Include
     private Integer cityId;
 

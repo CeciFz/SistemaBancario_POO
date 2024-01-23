@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -18,7 +19,9 @@ import java.time.LocalDateTime;
 @SQLRestriction("enabled = true")
 public class Account {               // TODO: SP para crear cuentas y verificar condiciones (se debe iniciar con monto de $10000)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,  generator= "account_seq")
+    @SequenceGenerator(name = "account_seq", sequenceName ="account_sequence",  initialValue = 100, allocationSize = 1)
     @EqualsAndHashCode.Include
     private Integer accountNumber;
 
