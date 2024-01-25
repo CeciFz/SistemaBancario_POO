@@ -26,20 +26,22 @@ public class AccountController {
     }
     @PostMapping("/update")
     private ResponseEntity<AccountDto> update(@RequestBody Account account) throws Exception {
-        AccountDto updatedAccount = mapper.map(accountService.update(account, account.getAccountNumber()), AccountDto.class);
+        AccountDto updatedAccount =
+                mapper.map(accountService.update(account, account.getAccountNumber()), AccountDto.class);
         return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
     }
 
     @GetMapping("getAll")
     public ResponseEntity<List<AccountDto>> readAll() throws Exception {
-        List<AccountDto> account  = accountService.readAll()
+        List<AccountDto> accounts  = accountService.readAll()
                 .stream().map( e -> mapper.map(e, AccountDto.class)).toList();
-        return new ResponseEntity<>(account, HttpStatus.OK);
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
     @GetMapping("/{accountNumber}")
     public ResponseEntity<AccountDto> readById(@PathVariable Integer accountNumber) throws Exception {
-        return new ResponseEntity<>(mapper.map(accountService.readById(accountNumber), AccountDto.class), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.map(accountService.readById(accountNumber), AccountDto.class),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{accountNumber}")

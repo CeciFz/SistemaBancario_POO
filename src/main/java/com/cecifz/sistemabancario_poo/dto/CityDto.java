@@ -13,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class CityDto {
     private Integer id;
     private String name;
+    private Integer idProvince;
     private String province;
 }

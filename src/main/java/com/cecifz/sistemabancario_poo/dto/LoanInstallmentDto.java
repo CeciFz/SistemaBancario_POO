@@ -5,11 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AccountTypeDto {
+public class LoanInstallmentDto {
     private Integer id;
-    private String type;
+    private Integer loanId;
+    private int installmentNumber;
+    private LocalDate dueDate;
+    private LocalDate paymentDate;
+    private double installmentAmount;
+    private boolean cancelled;
 }

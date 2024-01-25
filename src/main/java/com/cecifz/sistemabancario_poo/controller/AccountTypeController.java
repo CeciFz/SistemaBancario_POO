@@ -16,38 +16,39 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountTypeController {
 
-    private final IAccountTypeService accountTypeService;
+    private final IAccountTypeService typeService;
     private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<AccountTypeDto> save(@RequestBody AccountType accountType) throws Exception {
-        AccountTypeDto savedAccountType = mapper.map(accountTypeService.save(accountType), AccountTypeDto.class);
+    private ResponseEntity<AccountTypeDto> save(@RequestBody AccountType type) throws Exception {
+        AccountTypeDto savedAccountType = mapper.map(typeService.save(type), AccountTypeDto.class);
         return new ResponseEntity<>(savedAccountType, HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    private ResponseEntity<AccountTypeDto> update(@RequestBody AccountType accountType) throws Exception {
-        AccountTypeDto updatedAccountType = mapper.map(accountTypeService.update(accountType, accountType.getAccountTypeId()), AccountTypeDto.class);
+    private ResponseEntity<AccountTypeDto> update(@RequestBody AccountType type) throws Exception {
+        AccountTypeDto updatedAccountType =
+                mapper.map(typeService.update(type, type.getAccountTypeId()), AccountTypeDto.class);
         return new ResponseEntity<>(updatedAccountType, HttpStatus.OK);
     }
 
     @GetMapping("getAll")
     public ResponseEntity<List<AccountTypeDto>> readAll() throws Exception {
-        List<AccountTypeDto> accountTypes  = accountTypeService.readAll()
+        List<AccountTypeDto> types  = typeService.readAll()
                 .stream().map(t -> mapper.map(t, AccountTypeDto.class))
                 .toList();
-        return new ResponseEntity<>(accountTypes, HttpStatus.OK);
+        return new ResponseEntity<>(types, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AccountTypeDto> readById(@PathVariable Integer id) throws Exception {
-        return new ResponseEntity<>(mapper.map(accountTypeService.readById(id), AccountTypeDto.class),
+        return new ResponseEntity<>(mapper.map(typeService.readById(id), AccountTypeDto.class),
                  HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
-        accountTypeService.delete(id);
+        typeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

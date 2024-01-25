@@ -20,7 +20,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idTransaction;
+    private Integer transactionId;
 
     @ManyToOne
     @JoinColumn(name = "account_number", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_NUMBER"))
@@ -33,7 +33,7 @@ public class Transaction {
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name = "id_transaction_Type", nullable = false, foreignKey = @ForeignKey(name = "FX_TRANSACTION_TYPE"))
+    @JoinColumn(name = "transaction_type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_TRANSACTION_TYPE"))
     private TransactionType transactionType;
 
     @Column(columnDefinition = "decimal(10,2)", nullable = false)

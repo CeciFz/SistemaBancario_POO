@@ -1,9 +1,11 @@
 package com.cecifz.sistemabancario_poo.controller;
 
 
+import com.cecifz.sistemabancario_poo.dto.UserDto;
 import com.cecifz.sistemabancario_poo.model.User;
 import com.cecifz.sistemabancario_poo.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,11 @@ import java.util.List;
 public class UserController {
     
     private final IUserService userService;
+    private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<User> save(@RequestBody User user) throws Exception {
-        User savedUser = userService.save(user);
+    private ResponseEntity<UserDto> save(@RequestBody User user) throws Exception {
+        UserDto savedUser = mapper.map(userService.save(user), UserDto.class);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
@@ -31,14 +34,17 @@ public class UserController {
     }*/
 
     @GetMapping("getAll")
-    public ResponseEntity<List<User>> readAll() throws Exception {
-        List<User> cities  = userService.readAll();
-        return new ResponseEntity<>(cities, HttpStatus.OK);
+    public ResponseEntity<List<UserDto>> readAll() throws Exception {
+        List<UserDto> userList  = userService.readAll()
+                .stream().map( u -> mapper.map(u, UserDto.class))
+                .toList();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> readById(@PathVariable Integer id) throws Exception {
-        return new ResponseEntity<>(userService.readById(id), HttpStatus.OK);
+    public ResponseEntity<UserDto> readById(@PathVariable Integer id) throws Exception {
+        return new ResponseEntity<>(mapper.map(userService.readById(id), UserDto.class),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

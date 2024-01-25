@@ -1,8 +1,10 @@
 package com.cecifz.sistemabancario_poo.controller;
 
+import com.cecifz.sistemabancario_poo.dto.TransactionTypeDto;
 import com.cecifz.sistemabancario_poo.model.TransactionType;
 import com.cecifz.sistemabancario_poo.service.ITransactionTypeService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,34 +16,39 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TransactionTypeController {
     
-    private final ITransactionTypeService transactionTypeService;
+    private final ITransactionTypeService typeService;
+    private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<TransactionType> save(@RequestBody TransactionType transactionType) throws Exception {
-        TransactionType savedTransactionType = transactionTypeService.save(transactionType);
-        return new ResponseEntity<>(savedTransactionType, HttpStatus.CREATED);
+    private ResponseEntity<TransactionTypeDto> save(@RequestBody TransactionType type) throws Exception {
+        TransactionTypeDto savedType = mapper.map(typeService.save(type), TransactionTypeDto.class);
+        return new ResponseEntity<>(savedType, HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    private ResponseEntity<TransactionType> update(@RequestBody TransactionType transactionType) throws Exception {
-        TransactionType updatedTransactionType = transactionTypeService.update(transactionType, transactionType.getTransactionTypeId());
-        return new ResponseEntity<>(updatedTransactionType, HttpStatus.OK);
+    private ResponseEntity<TransactionTypeDto> update(@RequestBody TransactionType type) throws Exception {
+        TransactionTypeDto updatedType =
+                mapper.map(typeService.update(type, type.getTransactionTypeId()), TransactionTypeDto.class);
+        return new ResponseEntity<>(updatedType, HttpStatus.OK);
     }
 
     @GetMapping("getAll")
-    public ResponseEntity<List<TransactionType>> readAll() throws Exception {
-        List<TransactionType> cities  = transactionTypeService.readAll();
-        return new ResponseEntity<>(cities, HttpStatus.OK);
+    public ResponseEntity<List<TransactionTypeDto>> readAll() throws Exception {
+        List<TransactionTypeDto> typesList  = typeService.readAll()
+                .stream().map( t -> mapper.map(t, TransactionTypeDto.class))
+                .toList();
+        return new ResponseEntity<>(typesList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TransactionType> readById(@PathVariable Integer id) throws Exception {
-        return new ResponseEntity<>(transactionTypeService.readById(id), HttpStatus.OK);
+    public ResponseEntity<TransactionTypeDto> readById(@PathVariable Integer id) throws Exception {
+        return new ResponseEntity<>(mapper.map(typeService.readById(id), TransactionTypeDto.class),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
-        transactionTypeService.delete(id);
+        typeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

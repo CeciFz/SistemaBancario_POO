@@ -33,9 +33,9 @@ public class ClientController {
 
     @GetMapping("getAll")
     public ResponseEntity<List<ClientDto>> readAll() throws Exception {
-        List<ClientDto> cities  = clientService.readAll()
+        List<ClientDto> clientList  = clientService.readAll()
                 .stream().map( e -> mapper.map(e, ClientDto.class)).toList();
-        return new ResponseEntity<>(cities, HttpStatus.OK);
+        return new ResponseEntity<>(clientList, HttpStatus.OK);
     }
 
     @GetMapping("/{dni}")

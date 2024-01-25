@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AccountTypeDto {
+public class UserDto {
     private Integer id;
-    private String type;
+    private String role;
+    private String username;
+    private String dniClient;
 }
