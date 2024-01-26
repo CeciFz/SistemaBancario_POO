@@ -13,9 +13,12 @@ import lombok.NoArgsConstructor;
 public class AccountDto {
     private Integer accountNumber;
     private Long cbu;
+
     @JsonIncludeProperties(value = {"id", "fullName"})
     private ClientDto client;
+
     @JsonIncludeProperties(value = {"id", "description"})
     private AccountTypeDto accountType;
+
     private double balance;
 }

@@ -1,5 +1,6 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,8 @@ public class Phone {
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PHONE_NUMBER"))
-    private Client clientPhone;
+    @JsonBackReference
+    private Client client;
 
     @Column(length = 20)
     private String detail;

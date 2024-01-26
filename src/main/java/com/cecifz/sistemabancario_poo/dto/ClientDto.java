@@ -2,6 +2,7 @@ package com.cecifz.sistemabancario_poo.dto;
 
 import com.cecifz.sistemabancario_poo.model.Phone;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,9 @@ public class ClientDto {
     private char sex;
     private LocalDate birthdate;
     private String address;
+
+    @JsonIncludeProperties(value = {"phoneNumber", "detail"})
     private List<Phone> phones;
+
     private String email;
 }

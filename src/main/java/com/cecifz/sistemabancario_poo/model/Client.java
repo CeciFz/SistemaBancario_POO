@@ -1,6 +1,7 @@
 package com.cecifz.sistemabancario_poo.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -55,8 +56,9 @@ public class Client {
     @JoinColumn(name = "city_id", nullable = false, foreignKey = @ForeignKey(name = "FX_CITY"))
     private City city;
 
-    @OneToMany(mappedBy = "clientPhone", cascade = CascadeType.ALL)
-    private List<Phone> phoneList;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Phone> phones;
 
     private String email;
 

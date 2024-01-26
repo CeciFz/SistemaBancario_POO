@@ -28,7 +28,7 @@ public class PhoneController {
     @PostMapping("/update")
     private ResponseEntity<PhoneDto> update(@RequestBody Phone phone) throws Exception {
         PhoneDto updatedPhone = mapper.map(
-                phoneService.update(phone, phone.getClientPhone().getDni()), PhoneDto.class);
+                phoneService.update(phone, phone.getPhoneNumber()), PhoneDto.class);
         return new ResponseEntity<>(updatedPhone, HttpStatus.OK);
     }
 
