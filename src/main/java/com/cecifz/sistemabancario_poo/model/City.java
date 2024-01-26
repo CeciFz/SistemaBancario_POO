@@ -1,5 +1,6 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +23,10 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO, generator="city_seq")
     @GenericGenerator(name = "city_seq", strategy="increment")
     @EqualsAndHashCode.Include
+    @JsonAlias(value = {"cityId", "id", "city_id"})
     private Integer cityId;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String cityName;
 
     @ManyToOne

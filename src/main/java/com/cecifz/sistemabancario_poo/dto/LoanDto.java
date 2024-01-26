@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoanDto {
     private Integer id;
-    private String dniClient;
+    private String clientId;
     private LocalDate date;
     private double loanAmount;
     private double finalAmount;

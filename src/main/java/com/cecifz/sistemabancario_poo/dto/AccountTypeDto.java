@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountTypeDto {
     private Integer id;
-    private String type;
+    private String description;
 }

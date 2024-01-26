@@ -1,5 +1,6 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,13 +20,14 @@ import org.hibernate.annotations.SQLRestriction;
 public class AccountType {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
-    @GenericGenerator(name = "seq", strategy="increment")
+    @GeneratedValue(strategy = GenerationType.AUTO,  generator= "accountType_seq")
+    @GenericGenerator(name = "accountType_seq", strategy="increment")
     @EqualsAndHashCode.Include
-    private Integer accountTypeId;
+    @JsonAlias(value = {"typeId", "id", "type_id"})
+    private Integer typeId;
 
-    @Column(length = 20, nullable = false)
-    private String accountType;
+    @Column(length = 20, nullable = false, unique = true)
+    private String description;
 
     private boolean enabled = Boolean.TRUE;
 }

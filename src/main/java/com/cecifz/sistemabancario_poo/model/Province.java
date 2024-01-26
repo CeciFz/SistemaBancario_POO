@@ -1,10 +1,12 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -17,12 +19,14 @@ import org.hibernate.annotations.SQLRestriction;
 @SQLRestriction("enabled = true")
 public class Province {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO,  generator= "province_seq")
+    @GenericGenerator(name = "province_seq", strategy="increment")
     @EqualsAndHashCode.Include
+    @JsonAlias(value = {"provinceId", "id", "province_id"})
     private Integer provinceId;
 
     @Column(length = 50, nullable = false, unique = true)
-    private String provinceName;
+    private String description;
 
     private boolean enabled = Boolean.TRUE;
 }

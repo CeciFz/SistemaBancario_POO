@@ -20,7 +20,8 @@ public class CityController {
     private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<CityDto> save(@RequestBody City city) throws Exception {
+    private ResponseEntity<CityDto> save(@RequestBody CityDto cityDto) throws Exception {
+        City city = mapper.map(cityDto, City.class);
         CityDto savedCity = mapper.map(cityService.save(city), CityDto.class);
         return new ResponseEntity<>(savedCity, HttpStatus.CREATED);
     }

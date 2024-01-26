@@ -1,10 +1,12 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 
@@ -18,8 +20,10 @@ import java.time.LocalDate;
 //@SQLRestriction("enabled = true")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO,  generator= "tran_seq")
+    @GenericGenerator(name = "tran_seq", strategy="increment")
     @EqualsAndHashCode.Include
+    @JsonAlias(value = {"transactionId", "id", "transaction_id"})
     private Integer transactionId;
 
     @ManyToOne
@@ -33,7 +37,7 @@ public class Transaction {
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name = "transaction_type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_TRANSACTION_TYPE"))
+    @JoinColumn(name = "type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_TRANSACTION_TYPE"))
     private TransactionType transactionType;
 
     @Column(columnDefinition = "decimal(10,2)", nullable = false)

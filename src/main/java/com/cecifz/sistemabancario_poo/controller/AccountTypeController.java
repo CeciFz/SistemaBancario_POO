@@ -28,7 +28,7 @@ public class AccountTypeController {
     @PostMapping("/update")
     private ResponseEntity<AccountTypeDto> update(@RequestBody AccountType type) throws Exception {
         AccountTypeDto updatedAccountType =
-                mapper.map(typeService.update(type, type.getAccountTypeId()), AccountTypeDto.class);
+                mapper.map(typeService.update(type, type.getTypeId()), AccountTypeDto.class);
         return new ResponseEntity<>(updatedAccountType, HttpStatus.OK);
     }
 

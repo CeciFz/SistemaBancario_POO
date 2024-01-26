@@ -22,7 +22,7 @@ public class Phone {
     private String phoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FK_PHONE_NUMBER"))
+    @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PHONE_NUMBER"))
     private Client clientPhone;
 
     @Column(length = 20)

@@ -28,7 +28,7 @@ public class TransactionTypeController {
     @PostMapping("/update")
     private ResponseEntity<TransactionTypeDto> update(@RequestBody TransactionType type) throws Exception {
         TransactionTypeDto updatedType =
-                mapper.map(typeService.update(type, type.getTransactionTypeId()), TransactionTypeDto.class);
+                mapper.map(typeService.update(type, type.getTypeId()), TransactionTypeDto.class);
         return new ResponseEntity<>(updatedType, HttpStatus.OK);
     }
 

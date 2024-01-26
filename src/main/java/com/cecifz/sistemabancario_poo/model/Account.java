@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -19,9 +18,8 @@ import java.time.LocalDateTime;
 @SQLRestriction("enabled = true")
 public class Account {               // TODO: SP para crear cuentas y verificar condiciones (se debe iniciar con monto de $10000)
     @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,  generator= "account_seq")
-    @SequenceGenerator(name = "account_seq", sequenceName ="account_sequence",  initialValue = 100, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,  generator = "account_seq")
+    @SequenceGenerator(name = "account_seq", sequenceName = "account_sequence",  initialValue = 100, allocationSize = 1)
     @EqualsAndHashCode.Include
     private Integer accountNumber;
 
@@ -29,11 +27,11 @@ public class Account {               // TODO: SP para crear cuentas y verificar 
     private Long cbu;
 
     @ManyToOne
-    @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FX_DNI_ACCOUNT"))
+    @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FX_CLIENT_ACCOUNT"))
     private Client client;                   //TODO: SP para que un cliente no pueda tener más de 3 cuentas.
                                             //Una cuenta puede pertenecer solo a un cliente
     @ManyToOne
-    @JoinColumn(name = "account_type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_TYPE"))
+    @JoinColumn(name = "type_id", nullable = false, foreignKey = @ForeignKey(name = "FX_ACCOUNT_TYPE"))
     private AccountType accountType;
 
     @Column(columnDefinition = "decimal(10,2)", nullable = false)

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PhoneDto {
     private String number;
-    private String dniClient;
+    private String clientId;
     private String detail;
 }

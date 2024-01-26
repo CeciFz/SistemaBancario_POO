@@ -20,14 +20,14 @@ public class ClientController {
     private final ModelMapper mapper;
 
     @PostMapping("/save")
-    private ResponseEntity<ClientDto> save(@RequestBody Client city) throws Exception {
-        ClientDto savedClient = mapper.map(clientService.save(city), ClientDto.class);
+    private ResponseEntity<ClientDto> save(@RequestBody Client client) throws Exception {
+        ClientDto savedClient = mapper.map(clientService.save(client), ClientDto.class);
         return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    private ResponseEntity<ClientDto> update(@RequestBody Client city) throws Exception {
-        ClientDto updatedClient = mapper.map(clientService.update(city, city.getDni()), ClientDto.class);
+    private ResponseEntity<ClientDto> update(@RequestBody Client client) throws Exception {
+        ClientDto updatedClient = mapper.map(clientService.update(client, client.getClientId()), ClientDto.class);
         return new ResponseEntity<>(updatedClient, HttpStatus.OK);
     }
 
@@ -39,13 +39,13 @@ public class ClientController {
     }
 
     @GetMapping("/{dni}")
-    public ResponseEntity<ClientDto> readById(@PathVariable String dni) throws Exception {
-        return new ResponseEntity<>(mapper.map(clientService.readById(dni), ClientDto.class), HttpStatus.OK);
+    public ResponseEntity<ClientDto> readById(@PathVariable Integer id) throws Exception {
+        return new ResponseEntity<>(mapper.map(clientService.readById(id), ClientDto.class), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{dni}")
-    public ResponseEntity<Void> delete(@PathVariable String dni) throws Exception {
-        clientService.delete(dni);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        clientService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

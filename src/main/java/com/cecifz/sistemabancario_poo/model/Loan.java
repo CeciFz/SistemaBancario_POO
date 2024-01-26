@@ -1,10 +1,12 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDate;
@@ -17,12 +19,14 @@ import java.time.LocalDate;
 @SQLRestriction("cancelled = false")
 public class Loan {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO,  generator= "loan_seq")
+    @GenericGenerator(name = "loan_seq", strategy="increment")
     @EqualsAndHashCode.Include
+    @JsonAlias(value = {"loanId", "id", "loan_id"})
     private Integer loanId;
 
     @ManyToOne
-    @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FX_LOAN_CLIENT"))
+    @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FX_LOAN_CLIENT"))
     private Client client;
 
     private LocalDate date = LocalDate.now();

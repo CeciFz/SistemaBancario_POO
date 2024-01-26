@@ -1,10 +1,12 @@
 package com.cecifz.sistemabancario_poo.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -19,8 +21,10 @@ import org.hibernate.annotations.SQLRestriction;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO,  generator= "user_seq")
+    @GenericGenerator(name = "user_seq", strategy="increment")
     @EqualsAndHashCode.Include
+    @JsonAlias(value = {"userId", "id", "user_id"})
     private Integer userId;
 
     @ManyToOne
@@ -34,7 +38,7 @@ public class User {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "dni", nullable = false, foreignKey = @ForeignKey(name = "FX_DNI_USER"))
+    @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FX_CLIENT_USER"))
     private Client client;
 
     private boolean enabled = Boolean.TRUE;

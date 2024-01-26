@@ -1,6 +1,7 @@
 package com.cecifz.sistemabancario_poo.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,8 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
     private Integer id;
-    private String role;
+    @JsonIncludeProperties(value = {"id", "description"})
+    private RoleDto role;
     private String username;
-    private String dniClient;
+    private String clientId;
 }

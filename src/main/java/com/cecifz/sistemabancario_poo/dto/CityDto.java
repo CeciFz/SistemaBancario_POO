@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CityDto {
     private Integer id;
-    private String name;
-    private Integer idProvince;
+    private String cityName;
+    private Integer provinceId;
     private String province;
 }

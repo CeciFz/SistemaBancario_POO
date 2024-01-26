@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientDto {
+    private Integer id;
     private String dni;
     private String fullName;
     private String cuil;
